@@ -32,6 +32,7 @@
         const thing = document.querySelector('#touchArea');
 
         thing.addEventListener('pointerdown', (e, element) => {
+            console.log(e);
             if(e.haptics) {
                 e.haptics.play(waveform);
                 thing.innerHTML = "It should be hopefully";
