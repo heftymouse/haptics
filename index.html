@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="origin-trial" content="Asyy3BNTs6p5afNU1r6y1nvk3ydnxyypuo+hiv0I0c9klU3ZVD7wgWVgqpEXZygd48Bsj6KbSNkZjUGv7WWOBJoAAABveyJvcmlnaW4iOiJodHRwczovL2hlZnR5bW91c2UuZ2l0aHViLmlvOjQ0MyIsImlzU3ViZG9tYWluIjpmYWxzZSwiZmVhdHVyZSI6IkhhcHRpY3NEZXZpY2UiLCJleHBpcnkiOjE2Nzk1Mjk2MDB9">
+    <title>Surface Haptics Test</title>
+    <style>
+        .toucharea {
+            margin: auto;
+            width: 25rem;
+            height: 25rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="touchArea" class="toucharea">
+        Touch your pen here
+    </div>
+    <script>
+        const waveform = new HapticsPredefinedWaveform({
+                waveformId: 4108
+            });
+        
+        const thing = document.querySelector('#touchArea');
+
+        thing.addEventListener('pointerdown', (e, element) => {
+            thing.innerHTML = "It should be working now if you're on a supported device hopefully";
+            if(e.haptics) {
+                e.haptics.play(waveform);
+            }
+        });
+
+        document.querySelector('#touchArea').addEventListener('pointerup', (e) => {
+            if(e.haptics) {
+                e.haptics.stop();
+            }
+            thing.innerHTML = "Touch your pen here";
+        });
+    </script>
+</body>
+</html>
