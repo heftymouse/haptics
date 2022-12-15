@@ -32,9 +32,11 @@
         const thing = document.querySelector('#touchArea');
 
         thing.addEventListener('pointerdown', (e, element) => {
-            thing.innerHTML = "It should be working now if you're on a supported device hopefully";
             if(e.haptics) {
                 e.haptics.play(waveform);
+                thing.innerHTML = "It should be hopefully";
+            } else {
+                thing.innerHTML = "You don't seem to have supported hardware";
             }
         });
 
